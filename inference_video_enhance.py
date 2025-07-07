@@ -57,7 +57,7 @@ parser = argparse.ArgumentParser(description='Video SR')
 parser.add_argument('--video', dest='video', type=str, default=None)
 parser.add_argument('--output', dest='output', type=str, default=None)
 parser.add_argument('--img', dest='img', type=str, default=None)
-parser.add_argument('--model', dest='modelDir', type=str, default='train_log_SAFA', help='directory with trained model files')
+parser.add_argument('--model', dest='modelDir', type=str, default='train_log', help='directory with trained model files')
 parser.add_argument('--fp16', dest='fp16', action='store_true', help='fp16 mode for faster and more lightweight inference on cards with Tensor Cores')
 parser.add_argument('--png', dest='png', action='store_true', help='whether to vid_out png format vid_outs')
 parser.add_argument('--ext', dest='ext', type=str, default='mp4', help='vid_out video extension')
@@ -76,10 +76,7 @@ if torch.cuda.is_available():
         print('set fp16')
         torch.set_default_tensor_type(torch.cuda.HalfTensor)
 
-try:
-    from train_log_SAFA.model import Model
-except:
-    print("Please download our model from model list")
+from train_log.model import Model
 model = Model()
 model.device()
 model.load_model(args.modelDir)
