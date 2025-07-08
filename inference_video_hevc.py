@@ -68,10 +68,7 @@ parser.add_argument('--png', dest='png', action='store_true', help='whether to v
 parser.add_argument('--ext', dest='ext', type=str, default='mp4', help='vid_out video extension')
 parser.add_argument('--exp', dest='exp', type=int, default=1)
 parser.add_argument('--multi', dest='multi', type=int, default=2)
-parser.add_argument('--4c1', dest='4c1', type=str, default='M')
-parser.add_argument('--4c2', dest='4c2', type=str, default='P')
-parser.add_argument('--4c3', dest='4c3', type=str, default='4')
-parser.add_argument('--4c4', dest='4c4', type=str, default='V')
+parser.add_argument('--cc4', dest='cc4', type=str, default='mp4v')
 
 args = parser.parse_args()
 if args.exp != 1:
@@ -114,7 +111,7 @@ if not args.video is None:
         fpsNotAssigned = False
     videogen = skvideo.io.vreader(args.video)
     lastframe = next(videogen)
-    fourcc = cv2.VideoWriter_fourcc('4c1','4c2','4c3','4c4')
+    fourcc = cv2.VideoWriter_fourcc(*args.cc4)
     video_path_wo_ext, ext = os.path.splitext(args.video)
     print('{}.{}, {} frames in total, {}FPS to {}FPS'.format(video_path_wo_ext, args.ext, tot_frame, fps, args.fps))
     if args.png == False and fpsNotAssigned == True:
