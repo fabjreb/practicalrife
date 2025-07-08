@@ -139,6 +139,7 @@ else:
     else:
         vid_out_name = '{}_{}X_{}fps.{}'.format(video_path_wo_ext, args.multi, int(np.round(args.fps)), args.ext)
     vid_out = cv2.VideoWriter(vid_out_name, fourcc, args.fps, (w, h))
+    vid_out.set(cv2.VIDEOWRITER_PROP_QUALITY, 100)
     
 def clear_write_buffer(user_args, write_buffer):
     cnt = 0
