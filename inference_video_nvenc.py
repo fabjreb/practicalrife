@@ -58,7 +58,7 @@ parser.add_argument('--png', action='store_true')
 parser.add_argument('--ext', type=str, default='mp4')
 parser.add_argument('--exp', type=int, default=1)
 parser.add_argument('--multi', type=int, default=2)
-parser.add_argument('--qp', type=str, default=18)
+parser.add_argument('--qp', type=int, default=18)
 
 args = parser.parse_args()
 if args.exp != 1:
